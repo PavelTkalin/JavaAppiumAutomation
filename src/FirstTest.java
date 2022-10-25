@@ -42,7 +42,7 @@ private AppiumDriver driver;
 {driver.quit();
 }
 
-
+/*
 @Test
     public void assertElementHasText()
 
@@ -56,8 +56,8 @@ private AppiumDriver driver;
     }
 
 
-/*
 
+*/
     @Test
 
 
@@ -75,6 +75,7 @@ waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/fragment_ma
 }
 
 
+/*
     @Test
 
 
