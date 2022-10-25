@@ -88,10 +88,12 @@ waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/fragment_ma
         waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_container']//*[@text ='JavaScript']"), "Cannot find object-oriented programming language searching by JavaScript", 15);
         WebElement java = waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_container']//*[@text ='Java']"), "Cannot find object-oriented programming language searching by Java", 15);
         WebElement javaScript = waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_container']//*[@text ='JavaScript']"), "Cannot find object-oriented programming language searching by JavaScript", 15);
-        String article_title_java = java.getText();
-        String article_title_javascript = javaScript.getText();
-        Assert.assertEquals("", "Java", article_title_java);
-        Assert.assertEquals("", "JavaScript", article_title_javascript);
+        String expected_article_text = "Java";
+        String actual_article_text_java = java.getText();
+        String actual_article_text_javascript = javaScript.getText();
+        Assert.assertTrue(actual_article_text_java.contains(expected_article_text));
+        Assert.assertTrue(actual_article_text_javascript.contains(expected_article_text));
+
     }
 
 
