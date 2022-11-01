@@ -268,7 +268,7 @@ public class FirstTest {
 
        }
 
-
+   */
     @Test
 
     public void testAssertElementPresent() {
@@ -281,8 +281,8 @@ public class FirstTest {
         waitForElementPresent(By.id("org.wikipedia:id/view_page_title_text"), "No page found", 15);
         isElementPresent(By.id("org.wikipedia:id/view_page_title_text"));
     }
-   */
 
+   /*
     @Test
 
     public void saveTwoArticlesToMyList() {
@@ -325,6 +325,9 @@ public class FirstTest {
         String actual_article_title_javascript = javaScript.getText();
         Assert.assertTrue(actual_article_title_javascript.contains(expected_article_title));
     }
+
+       */
+
 
     protected void swipeUpQuick() {
         swipeUp(2000);
