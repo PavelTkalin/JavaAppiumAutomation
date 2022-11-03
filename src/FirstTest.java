@@ -42,233 +42,210 @@ public class FirstTest {
         driver.quit();
     }
 
-    /*
-   @Test
-       public void assertElementHasText()
+/*
+    @Test
+    public void assertElementHasText() {
 
-       {
+        waitForElementPresent(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find object-oriented programming language searching by Java", 15);
+        waitForElementAndClick(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find X to cancel search", 15);
+        waitForElementPresent(By.id("org.wikipedia:id/search_src_text"), "Cannot find Search field", 15);
+        assertElementHasText(By.id("org.wikipedia:id/search_src_text"), "Search…", "Cannot find 'Search…'", 15);
 
-           waitForElementPresent(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find object-oriented programming language searching by Java", 15);
-           waitForElementAndClick(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find X to cancel search", 15);
-           waitForElementPresent(By.id("org.wikipedia:id/search_src_text"), "Cannot find Search field", 15);
-           assertElementHasText(By.id("org.wikipedia:id/search_src_text"), "Search…", "Cannot find 'Search…'", 15);
+    }
 
-       }
 
+    @Test
 
 
+    public void cancelTestSearch() {
 
+        waitForElementPresent(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find object-oriented programming language searching by Java", 15);
+        waitForElementAndClick(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find X to cancel search", 15);
+        waitForElementAndSendKeys(By.xpath("//*[contains(@text,'Search…')]"), "Java", "Cannot find Java", 5);
+        waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_container']//*[@text ='Java']"), "Cannot find object-oriented programming language searching by Java", 15);
+        waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_container']//*[@text ='JavaScript']"), "Cannot find object-oriented programming language searching by JavaScript", 15);
+        waitForElementAndClear(By.id("org.wikipedia:id/search_src_text"), "Cannot clear", 5);
+        waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/fragment_main_nav_tab_layout']//*[@text ='Explore']"), "Search is not cleared", 15);
+    }
 
-       @Test
 
+    @Test
 
-   public void cancelTestSearch()
 
-   {
+    public void verifyTestSearch() {
 
-   waitForElementPresent(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find object-oriented programming language searching by Java", 15);
-   waitForElementAndClick(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find X to cancel search", 15);
-   waitForElementAndSendKeys(By.xpath("//*[contains(@text,'Search…')]"), "Java", "Cannot find Java", 5);
-   waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_container']//*[@text ='Java']"),"Cannot find object-oriented programming language searching by Java" , 15);
-   waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_container']//*[@text ='JavaScript']"),"Cannot find object-oriented programming language searching by JavaScript" , 15);
-   waitForElementAndClear(By.id("org.wikipedia:id/search_src_text"), "Cannot clear", 5);
-   waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/fragment_main_nav_tab_layout']//*[@text ='Explore']"),"Search is not cleared" , 15);
-   }
+        waitForElementPresent(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find object-oriented programming language searching by Java", 15);
+        waitForElementAndClick(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find X to cancel search", 15);
+        waitForElementAndSendKeys(By.xpath("//*[contains(@text,'Search…')]"), "Java", "Cannot find Java", 5);
+        waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_container']//*[@text ='Java']"), "Cannot find object-oriented programming language searching by Java", 15);
+        waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_container']//*[@text ='JavaScript']"), "Cannot find object-oriented programming language searching by JavaScript", 15);
+        WebElement java = waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_container']//*[@text ='Java']"), "Cannot find object-oriented programming language searching by Java", 15);
+        WebElement javaScript = waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_container']//*[@text ='JavaScript']"), "Cannot find object-oriented programming language searching by JavaScript", 15);
+        String expected_article_text = "Java";
+        String actual_article_text_java = java.getText();
+        String actual_article_text_javascript = javaScript.getText();
+        Assert.assertTrue(actual_article_text_java.contains(expected_article_text));
+        Assert.assertTrue(actual_article_text_javascript.contains(expected_article_text));
 
+    }
 
-       @Test
 
+    @Test
+    public void testSwipeArticle() {
 
-       public void verifyTestSearch() {
 
-           waitForElementPresent(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find object-oriented programming language searching by Java", 15);
-           waitForElementAndClick(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find X to cancel search", 15);
-           waitForElementAndSendKeys(By.xpath("//*[contains(@text,'Search…')]"), "Java", "Cannot find Java", 5);
-           waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_container']//*[@text ='Java']"), "Cannot find object-oriented programming language searching by Java", 15);
-           waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_container']//*[@text ='JavaScript']"), "Cannot find object-oriented programming language searching by JavaScript", 15);
-           WebElement java = waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_container']//*[@text ='Java']"), "Cannot find object-oriented programming language searching by Java", 15);
-           WebElement javaScript = waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_container']//*[@text ='JavaScript']"), "Cannot find object-oriented programming language searching by JavaScript", 15);
-           String expected_article_text = "Java";
-           String actual_article_text_java = java.getText();
-           String actual_article_text_javascript = javaScript.getText();
-           Assert.assertTrue(actual_article_text_java.contains(expected_article_text));
-           Assert.assertTrue(actual_article_text_javascript.contains(expected_article_text));
+        waitForElementAndClick(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find X to cancel search", 15);
+        waitForElementAndSendKeys(By.xpath("//*[contains(@text,'Search…')]"), "Appium", "Cannot find Appium", 5);
+        waitForElementAndClick(By.id("org.wikipedia:id/fragment_feed_header"), "", 15);
+        waitForElementPresent(By.id("org.wikipedia:id/page_contents_container"), "No page found", 15);
+        swipeUptToFindElement(By.xpath("//*[contains(@text,'View page in browser')]"), "Test error message", 20);
 
-       }
 
+    }
 
-       @Test
-       public void testSwipeArticle() {
 
 
-           waitForElementAndClick(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find X to cancel search", 15);
-           waitForElementAndSendKeys(By.xpath("//*[contains(@text,'Search…')]"), "Appium", "Cannot find Appium", 5);
-           waitForElementAndClick(By.id("org.wikipedia:id/fragment_feed_header"), "", 15);
-           waitForElementPresent(By.id("org.wikipedia:id/page_contents_container"), "No page found", 15);
-           swipeUptToFindElement(By.xpath("//*[contains(@text,'View page in browser')]"), "Test error message", 20);
 
+    @Test
 
-       }
+    public void saveFirstArticleToMyList() {
 
 
-       protected void swipeUp(int timeOfSwipe) {
+        waitForElementPresent(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find object-oriented programming language searching by Java", 15);
+        waitForElementAndClick(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find X to cancel search", 15);
+        waitForElementAndSendKeys(By.xpath("//*[contains(@text,'Search…')]"), "Java", "Cannot find Java", 5);
+        waitForElementPresent(By.id("org.wikipedia:id/fragment_main_nav_tab_layout"), "No page found", 15);
+        waitForElementAndClick(By.id("org.wikipedia:id/fragment_main_nav_tab_layout"), "No page found", 15);
+        waitForElementAndClick(By.xpath("//android.widget.ImageView[@content-desc='More options']"), "cannot open", 5);
+        waitForElementAndClick(By.xpath("//*[contains(@text,'Add to reading list')]"), "Cannot find option to add article to reading list", 15);
+        waitForElementAndClick(By.id("org.wikipedia:id/onboarding_button"), "Cannot got it tip overlay", 15);
+        waitForElementAndClear(By.id("org.wikipedia:id/text_input"), "Cannot find input to set name on articles folder", 15);
 
-           TouchAction action = new TouchAction(driver);
-           Dimension size = driver.manage().window().getSize();
+        String name_of_folder = "Learning programming";
 
-           int x = size.width / 2;
-           int start_y = (int) (size.height * 0.8);
-           int end_y = (int) (size.height * 0.2);
+        waitForElementAndSendKeys(By.id("org.wikipedia:id/text_input"), name_of_folder, "Cannot input article folder", 16);
+        waitForElementAndClear(By.xpath("//*[contains(@text,'OK')]"), "Cannot find input to set name on articles folder", 15);
 
-           action
-                   .press(x, start_y)
-                   .waitAction(timeOfSwipe)
-                   .moveTo(x, end_y)
-                   .release()
-                   .perform();
-       }
+        waitForElementAndClick(By.xpath("//*[contains(@text,'OK')]"), "cannot find list", 16);
+        waitForElementAndClick(By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"), "Cannot close article, cannot find X", 16);
+        waitForElementAndClick(By.xpath("//android.widget.FrameLayout[@content-desc='My lists']"), "cannot find list", 16);
+        waitForElementAndClick(By.xpath("//*[contains(@text,'Learning programming')]"), "cannot find list", 16);
+        waitForElementPresent(By.xpath("//*[contains(@text,'Java (programming language)')]"), "cannot find list", 16);
+        swipeElementToLeft(By.xpath("//*[contains(@text,'Java (programming language)')]"), "Cannot swipe");
+        waitForElementPresent(By.xpath("//*[contains(@text,'Java (programming language)')]"), "Element is present on the page", 16);
 
 
-       @Test
+    }
 
-       public void saveFirstArticleToMyList() {
 
+    @Test
 
-           waitForElementPresent(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find object-oriented programming language searching by Java", 15);
-           waitForElementAndClick(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find X to cancel search", 15);
-           waitForElementAndSendKeys(By.xpath("//*[contains(@text,'Search…')]"), "Java", "Cannot find Java", 5);
-           waitForElementPresent(By.id("org.wikipedia:id/fragment_main_nav_tab_layout"), "No page found", 15);
-           waitForElementAndClick(By.id("org.wikipedia:id/fragment_main_nav_tab_layout"), "No page found", 15);
-           waitForElementAndClick(By.xpath("//android.widget.ImageView[@content-desc='More options']"), "cannot open", 5);
-           waitForElementAndClick(By.xpath("//*[contains(@text,'Add to reading list')]"), "Cannot find option to add article to reading list", 15);
-           waitForElementAndClick(By.id("org.wikipedia:id/onboarding_button"), "Cannot got it tip overlay", 15);
-           waitForElementAndClear(By.id("org.wikipedia:id/text_input"), "Cannot find input to set name on articles folder", 15);
+    public void amountOfNotEmptySearch() {
+        waitForElementAndClick(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find X to cancel search", 15);
 
-           String name_of_folder = "Learning programming";
+        String search_line = "Linking park discography";
 
-           waitForElementAndSendKeys(By.id("org.wikipedia:id/text_input"), name_of_folder, "Cannot input article folder", 16);
-           waitForElementAndClear(By.xpath("//*[contains(@text,'OK')]"), "Cannot find input to set name on articles folder", 15);
+        waitForElementAndSendKeys(By.xpath("//*[contains(@text,'Search…')]"),
+                search_line,
+                "Cannot find Java",
+                5);
 
-           waitForElementAndClick(By.xpath("//*[contains(@text,'OK')]"), "cannot find list", 16);
-           waitForElementAndClick(By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"), "Cannot close article, cannot find X", 16);
-           waitForElementAndClick(By.xpath("//android.widget.FrameLayout[@content-desc='My lists']"), "cannot find list", 16);
-           waitForElementAndClick(By.xpath("//*[contains(@text,'Learning programming')]"), "cannot find list", 16);
-           waitForElementPresent(By.xpath("//*[contains(@text,'Java (programming language)')]"), "cannot find list", 16);
-           swipeElementToLeft(By.xpath("//*[contains(@text,'Java (programming language)')]"), "Cannot swipe");
-           waitForElementPresent(By.xpath("//*[contains(@text,'Java (programming language)')]"), "Element is present on the page", 16);
+        String search_resource_locator = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout[1]/android.widget.FrameLayout[2]/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.ListView";
 
+        waitForElementPresent(By.xpath(search_resource_locator),
+                "Cannot find anything by request" + search_line,
+                15);
 
-       }
 
+        int amount_of_search_results = getAmountOfElements(
+                By.xpath(search_resource_locator));
 
-       @Test
 
-       public void amountOfNotEmptySearch() {
-           waitForElementAndClick(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find X to cancel search", 15);
+        Assert.assertTrue(
+                "We found too few results",
+                amount_of_search_results > 0);
+    }
 
-           String search_line = "Linking park discography";
 
-           waitForElementAndSendKeys(By.xpath("//*[contains(@text,'Search…')]"),
-                   search_line,
-                   "Cannot find Java",
-                   5);
+    @Test
 
-           String search_resource_locator = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout[1]/android.widget.FrameLayout[2]/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.ListView";
+    public void testOfEmplyAmountSearch() {
+        waitForElementAndClick(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find X to cancel search", 15);
 
-           waitForElementPresent(By.xpath(search_resource_locator),
-                   "Cannot find anything by request" + search_line,
-                   15);
+        String search_line = "zxcxdsfsdf";
 
+        waitForElementAndSendKeys(By.xpath("//*[contains(@text,'Search…')]"),
+                search_line,
+                "Cannot find Java",
+                5);
 
-           int amount_of_search_results = getAmountOfElements(
-                   By.xpath(search_resource_locator));
+        String search_result_locator = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout[1]/android.widget.FrameLayout[2]/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.ListView";
 
+        String empty_result_label = "//*[contains(@text,'No results found')]";
 
-           Assert.assertTrue(
-                   "We found too few results",
-                   amount_of_search_results > 0);
-       }
+        waitForElementPresent(By.xpath(empty_result_label),
+                "Cannot find empty results label by the request" + search_line,
+                15
 
+        );
 
-       @Test
+        assertElementNotPresent(By.xpath(search_result_locator),
+                "We found some results by request" + search_line);
+    }
 
-       public void testOfEmplyAmountSearch() {
-           waitForElementAndClick(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find X to cancel search", 15);
+    @Test
 
-           String search_line = "zxcxdsfsdf";
+    public void changeScreenOrientationOnSearchResults() {
 
-           waitForElementAndSendKeys(By.xpath("//*[contains(@text,'Search…')]"),
-                   search_line,
-                   "Cannot find Java",
-                   5);
+        waitForElementAndClick(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find X to cancel search", 15);
 
-           String search_result_locator = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout[1]/android.widget.FrameLayout[2]/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.ListView";
+        String search_line = "Java";
+        waitForElementAndSendKeys(By.xpath("//*[contains(@text,'Search…')]"), search_line, "Cannot find Java", 5);
 
-           String empty_result_label = "//*[contains(@text,'No results found')]";
 
-           waitForElementPresent(By.xpath(empty_result_label),
-                   "Cannot find empty results label by the request" + search_line,
-                   15
+        waitForElementAndClick(By.xpath("//*[contains(@text,'Object-oriented programming language')]"), "No page found", 15);
+        waitForElementPresent(By.id("org.wikipedia:id/view_page_title_text"), "cannot find element by id", 15);
 
-           );
+        String title_before_rotation = waitForElementAndGetAttribute(
+                By.id("org.wikipedia:id/view_page_title_text"),
+                "text",
+                "Cannot find title of article",
+                15);
 
-           assertElementNotPresent(By.xpath(search_result_locator),
-                   "We found some results by request" + search_line);
-       }
+        driver.rotate(ScreenOrientation.LANDSCAPE);
+        String title_after_rotation = waitForElementAndGetAttribute(By.id("org.wikipedia:id/fragment_main_nav_tab_layout"),
+                "text",
+                "Cannot find title of article",
+                15);
 
-       @Test
+        Assert.assertEquals("Article title have been changed after screen rotation", title_before_rotation, title_after_rotation);
 
-       public void changeScreenOrientationOnSearchResults() {
+        driver.rotate(ScreenOrientation.PORTRAIT);
 
-           waitForElementAndClick(By.id("org.wikipedia:id/fragment_feed_header"), "Cannot find X to cancel search", 15);
+        String title_after_second_rotation = waitForElementAndGetAttribute(By.id("org.wikipedia:id/view_page_title_text"),
+                "text",
+                "Cannot find title of article",
+                15);
 
-           String search_line = "Java";
-           waitForElementAndSendKeys(By.xpath("//*[contains(@text,'Search…')]"), search_line, "Cannot find Java", 5);
+        Assert.assertEquals("Article title have been changed after screen rotation", title_before_rotation, title_after_rotation);
 
+        Assert.assertEquals("Article title have been changed after screen rotation", title_before_rotation, title_after_second_rotation);
+    }
 
-           waitForElementAndClick(By.xpath("//*[contains(@text,'Object-oriented programming language')]"), "No page found", 15);
-           waitForElementPresent(By.id("org.wikipedia:id/view_page_title_text"), "cannot find element by id", 15);
 
-           String title_before_rotation = waitForElementAndGetAttribute(
-                   By.id("org.wikipedia:id/view_page_title_text"),
-                   "text",
-                   "Cannot find title of article",
-                   15);
+    @Test
 
-           driver.rotate(ScreenOrientation.LANDSCAPE);
-           String title_after_rotation = waitForElementAndGetAttribute(By.id("org.wikipedia:id/fragment_main_nav_tab_layout"),
-                   "text",
-                   "Cannot find title of article",
-                   15);
+    public void testSearchArticleBackground() {
+        waitForElementAndClick(By.xpath("//*[contains(@text,'Search Wikipedia')]"), "Cannot find object-oriented programming language searching by Java", 15);
+        waitForElementAndClick(By.xpath("//*[contains(@text,'Search…')]"), "Cannot find X to cancel search", 15);
+        waitForElementAndSendKeys(By.xpath("//*[contains(@text,'Search…')]"), "Java", "Cannot find Java", 5);
+        waitForElementPresent(By.id("org.wikipedia:id/fragment_main_nav_tab_layout"), "No page found", 15);
+        driver.runAppInBackground(2);
+        waitForElementPresent(By.id("org.wikipedia:id/fragment_main_nav_tab_layout"), "Cannot find article after returning from backgroundd", 15);
 
-           Assert.assertEquals("Article title have been changed after screen rotation", title_before_rotation, title_after_rotation);
+    }
 
-           driver.rotate(ScreenOrientation.PORTRAIT);
-
-           String title_after_second_rotation = waitForElementAndGetAttribute(By.id("org.wikipedia:id/view_page_title_text"),
-                   "text",
-                   "Cannot find title of article",
-                   15);
-
-           Assert.assertEquals("Article title have been changed after screen rotation", title_before_rotation, title_after_rotation);
-
-           Assert.assertEquals("Article title have been changed after screen rotation", title_before_rotation, title_after_second_rotation);
-       }
-
-
-       @Test
-
-       public void testSearchArticleBackground() {
-           waitForElementAndClick(By.xpath("//*[contains(@text,'Search Wikipedia')]"), "Cannot find object-oriented programming language searching by Java", 15);
-           waitForElementAndClick(By.xpath("//*[contains(@text,'Search…')]"), "Cannot find X to cancel search", 15);
-           waitForElementAndSendKeys(By.xpath("//*[contains(@text,'Search…')]"), "Java", "Cannot find Java", 5);
-           waitForElementPresent(By.id("org.wikipedia:id/fragment_main_nav_tab_layout"), "No page found", 15);
-           driver.runAppInBackground(2);
-           waitForElementPresent(By.id("org.wikipedia:id/fragment_main_nav_tab_layout"), "Cannot find article after returning from backgroundd", 15);
-
-       }
-
-   */
+*/
     @Test
 
     public void testAssertElementPresent() {
@@ -279,10 +256,11 @@ public class FirstTest {
         waitForElementPresent(By.xpath("//*[contains(@text,'JavaScript engine')]"), "No page found", 15);
         waitForElementAndClick(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout[1]/android.widget.FrameLayout[2]/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.ListView/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.TextView[1]"), "No page found", 15);
         waitForElementPresent(By.id("org.wikipedia:id/view_page_title_text"), "No page found", 15);
-        isElementPresent(By.id("org.wikipedia:id/view_page_title_text"));
+        assertElementIsPresenting(By.id("org.wikipedia:id/view_page_title_text"), "Cannot find element", 15);
+
     }
 
-   /*
+
     @Test
 
     public void saveTwoArticlesToMyList() {
@@ -325,8 +303,6 @@ public class FirstTest {
         String actual_article_title_javascript = javaScript.getText();
         Assert.assertTrue(actual_article_title_javascript.contains(expected_article_title));
     }
-
-       */
 
 
     protected void swipeUpQuick() {
@@ -396,10 +372,11 @@ public class FirstTest {
     }
 
 
-    private Boolean waitForElementNotPresent(By by, String error_message, long timeoutInSeconds) {
+    private WebElement waitForElementIsPresent(By by, String error_message, long timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
         wait.withMessage(error_message);
-        return wait.until(ExpectedConditions.invisibilityOfElementLocated(by)
+        return wait.until(ExpectedConditions.presenceOfElementLocated(by)
+
 
         );
 
@@ -453,27 +430,30 @@ public class FirstTest {
     }
 
 
-    public boolean isElementPresent(By by) {
+    private void assertElementIsPresenting(By by, String error_message, long timeoutInSeconds) {
+        boolean isTrue = driver.findElement(by).isDisplayed();
+        Assert.assertTrue(isTrue);
 
-
-        try {
-
-
-            waitForElementPresent(by, "", 15);
-            driver.getTitle();
-
-            return true;
-
-
-        } catch (NoSuchElementException e) {
-
-
-            return false;
-
-
-        }
 
     }
+
+    protected void swipeUp(int timeOfSwipe) {
+
+        TouchAction action = new TouchAction(driver);
+        Dimension size = driver.manage().window().getSize();
+
+        int x = size.width / 2;
+        int start_y = (int) (size.height * 0.8);
+        int end_y = (int) (size.height * 0.2);
+
+        action
+                .press(x, start_y)
+                .waitAction(timeOfSwipe)
+                .moveTo(x, end_y)
+                .release()
+                .perform();
+    }
+
 
 
 }
