@@ -4,6 +4,7 @@ import lib.CoreTestCase;
 import lib.ui.ArticlePageObject;
 import lib.ui.SearchPageObject;
 import org.junit.Test;
+import org.openqa.selenium.By;
 
 public class ChangeUpConditionTests extends CoreTestCase {
 
@@ -15,8 +16,8 @@ public class ChangeUpConditionTests extends CoreTestCase {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
 
         SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
+        SearchPageObject.typeSearchLine("JavaScript");
+        SearchPageObject.clickByArticle();
 
 
         ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
@@ -47,13 +48,12 @@ public class ChangeUpConditionTests extends CoreTestCase {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
 
         SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
+        SearchPageObject.typeSearchLine("JavaScript");
+        SearchPageObject.clickByArticle();
 
         this.backgroundApp(2);
 
-        SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
-
+        SearchPageObject.assertElementNotPresent(By.xpath(SearchPageObject.SEARCH_MAIN_ARTICLE), "article is not in the background");
     }
 
 }

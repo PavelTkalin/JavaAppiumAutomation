@@ -18,10 +18,9 @@ public class SearchTests extends CoreTestCase {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
 
         SearchPageObject.initSearchInput();
-        SearchPageObject.waitForSearchResult("Object-oriented programming language");
+        SearchPageObject.typeSearchLine("Java");
         SearchPageObject.waitForCancelButtonToAppear();
         SearchPageObject.clickCancelSearch();
-        SearchPageObject.waitForCancelButtonToDisAppear();
     }
 
     @Test
@@ -33,7 +32,7 @@ public class SearchTests extends CoreTestCase {
 
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.waitForSearchResult("Object-oriented programming language");
+        SearchPageObject.clickByArticle();
 
     }
 
@@ -44,8 +43,8 @@ public class SearchTests extends CoreTestCase {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
 
         SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Appium");
-        SearchPageObject.clickByArticleWithSubstring("Appium");
+        SearchPageObject.typeSearchLine("Java");
+        SearchPageObject.clickByArticle();
 
         ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
         ArticlePageObject.waitForTitleElement();
@@ -61,8 +60,8 @@ public class SearchTests extends CoreTestCase {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
 
         SearchPageObject.initSearchInput();
-        String search_line = "Linking park discography";
-        SearchPageObject.typeSearchLine(search_line);
+        SearchPageObject.typeSearchLine("Linkin park discography");
+        SearchPageObject.clickByArticle();
         int amount_of_search_results = SearchPageObject.getAmountOfFoundArticles();
 
 
@@ -74,15 +73,13 @@ public class SearchTests extends CoreTestCase {
 
     @Test
 
-    public void testOfEmplyAmountSearch() {
+    public void testOfEmptyAmountSearch() {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
 
         SearchPageObject.initSearchInput();
-
-        String search_line = "Linking park discography";
-
-        SearchPageObject.typeSearchLine(search_line);
+        SearchPageObject.typeSearchLine("fdfd&454d");
+        SearchPageObject.clickByArticle();
         SearchPageObject.waitForEmptyResultsLabel();
         SearchPageObject.assertThereIsNoResultOfSearch();
     }
@@ -93,9 +90,8 @@ public class SearchTests extends CoreTestCase {
 
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.waitForSearchResult("Object-oriented programming language");
-        WebElement java = SearchPageObject.waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_container']//*[@text ='Java']"), "Cannot find object-oriented programming language searching by Java", 15);
-        WebElement javaScript = SearchPageObject.waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_container']//*[@text ='JavaScript']"), "Cannot find object-oriented programming language searching by JavaScript", 15);
+        WebElement java = SearchPageObject.waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_title']//*[@text ='Java']"), "Cannot find object-oriented programming language searching by Java", 15);
+        WebElement javaScript = SearchPageObject.waitForElementPresent(By.xpath("//*[@resource-id = 'org.wikipedia:id/page_list_item_title']//*[@text ='JavaScript']"), "Cannot find object-oriented programming language searching by JavaScript", 15);
         String expected_article_text = "Java";
         String actual_article_text_java = java.getText();
         String actual_article_text_javascript = javaScript.getText();
@@ -103,7 +99,6 @@ public class SearchTests extends CoreTestCase {
         assertTrue(actual_article_text_javascript.contains(expected_article_text));
 
     }
-
 
 
 }

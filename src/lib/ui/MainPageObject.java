@@ -103,12 +103,11 @@ public class MainPageObject {
     }
 
 
-    public WebElement assertElementHasText(By by, String text, String error_message, long timeoutInSeconds) {
+    public void assertElementHasText(By by, String error_message, long timeoutInSeconds) {
 
         WebElement title_element = waitForElementPresent(by, "Page not found", 5);
         String article_title = title_element.getText();
-        Assert.assertEquals("Text is not present", text, article_title);
-        return title_element;
+
     }
 
 

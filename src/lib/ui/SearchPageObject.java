@@ -10,7 +10,9 @@ public class SearchPageObject extends MainPageObject {
             SEARCH_INPUT = "org.wikipedia:id/search_src_text",
             SEARCH_RESULT_BY_SUBSTRING_TPL = "//*[@resource-id = 'org.wikipedia:id/page_list_item_container']//*[@text =' {substring}']",
             SEARCH_CANCEL_BUTTON = "org.wikipedia:id/search_close_btn",
+            SEARCH_BUTTON = "org.wikipedia:id/search_src_text",
             SEARCH_RESULT_ELEMENT = "//*[@resource-id = 'org.wikipedia:id/search_results_list']//*[@resource-id = 'org.wikipedia:id/page_list_item_container']",
+            SEARCH_MAIN_ARTICLE = "//android.widget.FrameLayout[@content-desc='Explore']",
             SEARCH_EMPTY_RESULT_ELEMENT = "//*[contains(@text,'No results found')]";
 
     public SearchPageObject(AppiumDriver driver) {
@@ -27,6 +29,11 @@ public class SearchPageObject extends MainPageObject {
     public void initSearchInput() {
         this.waitForElementPresent(By.id(SEARCH_INIT_ELEMENT), "Cannot find search input after clicking search init element", 15);
         this.waitForElementAndClick(By.id(SEARCH_INIT_ELEMENT), "Cannot find search input after clicking search init element", 15);
+    }
+
+
+    public void verifyStartPage() {
+        this.waitForElementPresent(By.id(SEARCH_INIT_ELEMENT), "Cannot find search input after clicking search init element", 15);
     }
 
     public void waitForCancelButtonToAppear() {
@@ -48,6 +55,8 @@ public class SearchPageObject extends MainPageObject {
     public void typeSearchLine(String line_search) {
 
         this.waitForElementAndSendKeys(By.id(SEARCH_INPUT), line_search, "Cannot type input", 15);
+        this.waitForElementAndClick(By.id(SEARCH_BUTTON), "Cannot type input", 15);
+
 
     }
 
@@ -62,6 +71,14 @@ public class SearchPageObject extends MainPageObject {
     public void clickByArticleWithSubstring(String substring) {
         String search_result_xpath = getResultSearchElement(substring);
         this.waitForElementAndClick(By.xpath(search_result_xpath), "error" + substring, 15);
+
+
+    }
+
+
+    public void clickByArticle() {
+        this.waitForElementAndClick(By.xpath(
+                SEARCH_MAIN_ARTICLE), "error", 15);
 
 
     }

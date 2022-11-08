@@ -18,8 +18,7 @@ public class ArticleTests extends CoreTestCase {
 
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.waitForSearchResult("Object-oriented programming language");
-        SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
+        SearchPageObject.clickByArticle();
 
         ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
         String article_title = ArticlePageObject.getArticleTitle();
@@ -30,18 +29,16 @@ public class ArticleTests extends CoreTestCase {
 
 
     @Test
-    public void testAssertElementHasText(By by, String error_message, long timeOutInSeconds) {
+    public void testAssertElementHasText() {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
 
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.waitForSearchResult("Object-oriented programming language");
-        SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
-        SearchPageObject.assertElementHasText(By.id("org.wikipedia:id/search_src_text"), "Object-oriented programming language", "Text is not asserted", 15);
+        SearchPageObject.clickByArticle();
+        SearchPageObject.assertElementHasText(By.id("org.wikipedia:id/view_page_title_text"), "Cannot find element", 15);
 
     }
-
 
 
     @Test
@@ -50,10 +47,10 @@ public class ArticleTests extends CoreTestCase {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
 
+
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.waitForSearchResult("Object-oriented programming language");
-        SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
+        SearchPageObject.clickByArticle();
         SearchPageObject.assertElementIsPresenting(By.id("org.wikipedia:id/view_page_title_text"), "Cannot find element", 15);
 
     }

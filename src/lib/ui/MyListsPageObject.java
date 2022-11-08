@@ -7,8 +7,10 @@ public class MyListsPageObject extends MainPageObject {
 
     public static final String
 
-            FOLDER_BY_NAME_TPL = "//*[@text =' {FOLDERNAME}']",
-            ARTICLE_BY_TITLE = "//*[@text ='{TITLE}')]";
+            FOLDER_BY_NAME_TPL = "//*[@text ='{FOLDERNAME}']",
+            ARTICLE_BY_TITLE = "//*[@text ='{TITLE}')]",
+
+    LIST_OF_ARTICLES = "org.wikipedia:id/item_title";
 
     public MyListsPageObject(AppiumDriver driver) {
         super(driver);
@@ -34,6 +36,14 @@ public class MyListsPageObject extends MainPageObject {
     }
 
 
+    public void openFolder() {
+
+
+        this.waitForElementAndClick(By.id(LIST_OF_ARTICLES), "cannot click the list of articles", 15);
+
+    }
+
+
     public void waitForArticleTitleToAppearByTitle(String article_title) {
 
         String article_xpath = getFolderXpathByName(article_title);
@@ -44,7 +54,15 @@ public class MyListsPageObject extends MainPageObject {
     public void waitForArticleTitleToDissappearByTitle(String article_title) {
 
         String article_xpath = getFolderXpathByName(article_title);
-        this.waitForElementAndClick(By.xpath(article_xpath), "Saved article still present with title" + article_title, 15);
+        this.waitForElementNotPresent(By.xpath(article_xpath), "Saved article still present with title" + article_title, 15);
+
+    }
+
+
+    public void waitForArticleTitleToDissappear() {
+
+
+        this.waitForElementAndClick(By.xpath(ARTICLE_BY_TITLE), "Saved article still present with title", 15);
 
     }
 
@@ -56,6 +74,17 @@ public class MyListsPageObject extends MainPageObject {
         String article_xpath = getFolderXpathByName(article_title);
         this.swipeElementToLeft(By.xpath(article_xpath), "Cannot swipe");
         this.waitForArticleTitleToDissappearByTitle(article_title);
+
+    }
+
+
+    public void swipeByArticleToDeleteWithoutTitle(String article_title) {
+
+        this.waitForArticleTitleToAppearByTitle(article_title);
+
+        String article_xpath = getFolderXpathByName(article_title);
+        this.swipeElementToLeft(By.xpath(article_xpath), "Cannot swipe");
+        this.waitForArticleTitleToDissappear();
 
     }
 

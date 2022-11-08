@@ -7,8 +7,6 @@ import lib.ui.NavigationUI;
 import lib.ui.SearchPageObject;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class MyListsTests extends CoreTestCase {
 
@@ -21,14 +19,10 @@ public class MyListsTests extends CoreTestCase {
 
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.waitForSearchResult("Object-oriented programming language");
-        SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
-
+        SearchPageObject.clickByArticle();
         ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
         ArticlePageObject.waitForTitleElement();
-
         String article_title = ArticlePageObject.getArticleTitle();
-
         ArticlePageObject.addArticleTitleToMyList("Learning programming");
         ArticlePageObject.closeArticle();
 
@@ -36,12 +30,11 @@ public class MyListsTests extends CoreTestCase {
         NavigationUI.clickMyLists();
 
         MyListsPageObject MyListsPageObject = new MyListsPageObject(driver);
-        MyListsPageObject.openFolderByName("Learning programming");
+        MyListsPageObject.openFolder();
 
         MyListsPageObject.swipeByArticleToDelete(article_title);
 
     }
-
 
 
     @Test
@@ -53,8 +46,7 @@ public class MyListsTests extends CoreTestCase {
 
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.waitForSearchResult("Object-oriented programming language");
-        SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
+        SearchPageObject.clickByArticle();
         ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
         ArticlePageObject.waitForTitleElement();
         String article_title = ArticlePageObject.getArticleTitle();
@@ -63,12 +55,11 @@ public class MyListsTests extends CoreTestCase {
 
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("JavaScript");
-        SearchPageObject.waitForSearchResult("Object-oriented programming language");
-        SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
+        SearchPageObject.clickByArticle();
         ArticlePageObject ArticlePageObject2 = new ArticlePageObject(driver);
         ArticlePageObject2.waitForTitleElement();
         String article_title2 = ArticlePageObject2.getArticleTitle();
-        ArticlePageObject2.addArticleTitleToMyList("Learning programming");
+        ArticlePageObject2.addArticleTitleToMyExistingList();
         ArticlePageObject2.closeArticle();
 
         NavigationUI NavigationUI = new NavigationUI(driver);
@@ -84,7 +75,6 @@ public class MyListsTests extends CoreTestCase {
         Assert.assertTrue(actual_article_title_javascript.contains(expected_article_title));
 
     }
-
 
 
 }
