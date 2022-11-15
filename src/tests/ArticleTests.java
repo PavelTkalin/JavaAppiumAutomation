@@ -36,7 +36,7 @@ public class ArticleTests extends CoreTestCase {
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.clickByArticle();
-        SearchPageObject.assertElementHasText(By.id("org.wikipedia:id/view_page_title_text"), "Cannot find element", 15);
+        SearchPageObject.assertElementHasText(ArticlePageObject.TITLE, "Cannot find element", 15);
 
     }
 
@@ -51,7 +51,7 @@ public class ArticleTests extends CoreTestCase {
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.clickByArticle();
-        SearchPageObject.assertElementIsPresenting(By.id("org.wikipedia:id/view_page_title_text"), "Cannot find element", 15);
+        SearchPageObject.assertElementIsPresenting(ArticlePageObject.TITLE, "Cannot find element", 15);
 
     }
 

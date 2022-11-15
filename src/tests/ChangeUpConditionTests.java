@@ -53,7 +53,7 @@ public class ChangeUpConditionTests extends CoreTestCase {
 
         this.backgroundApp(2);
 
-        SearchPageObject.assertElementNotPresent(By.xpath(SearchPageObject.SEARCH_MAIN_ARTICLE), "article is not in the background");
+        SearchPageObject.assertElementNotPresent(SearchPageObject.SEARCH_MAIN_ARTICLE, "article is not in the background");
     }
 
 }

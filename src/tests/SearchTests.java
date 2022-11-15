@@ -85,6 +85,7 @@ public class SearchTests extends CoreTestCase {
     }
 
 
+ /*
     public void testVerifyTestSearch() {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
 
@@ -99,6 +100,6 @@ public class SearchTests extends CoreTestCase {
         assertTrue(actual_article_text_javascript.contains(expected_article_text));
 
     }
-
+*/
 
 }
