@@ -16,7 +16,7 @@ import org.junit.Test;
 public class MyListsTests extends CoreTestCase {
 
     private static final String name_of_folder = "Learning programming";
-
+/*
     @Test
 
     public void testSaveFirstArticleToMyList() {
@@ -52,7 +52,7 @@ public class MyListsTests extends CoreTestCase {
 
     }
 
-
+*/
     @Test
 
     public void testSaveTwoArticlesToMyList() {

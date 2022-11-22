@@ -4,7 +4,6 @@ import io.appium.java_client.AppiumDriver;
 import lib.Platform;
 import lib.ui.ArticlePageObject;
 import lib.ui.android.AndroidArticlePageObject;
-import lib.ui.android.AndroidSearchPageObject;
 import lib.ui.ios.IOSArticlePageObject;
 
 public class ArticlePageObjectFactory {
