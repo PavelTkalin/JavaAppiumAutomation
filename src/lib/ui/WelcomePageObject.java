@@ -5,8 +5,7 @@ import org.openqa.selenium.By;
 
 public class WelcomePageObject extends MainPageObject {
 
-    public WelcomePageObject(AppiumDriver
-                                     driver) {
+    public WelcomePageObject(AppiumDriver driver) {
         super(driver);
 
     }
@@ -19,7 +18,9 @@ public class WelcomePageObject extends MainPageObject {
             STEP_ADD_OR_EDIT_PREFERRED_LANG_TEXT = "Add or edit preferred languages",
             STEP_LEARN_MORE_ABOUT_DATA_COLLECTED_LINK = "Learn more about data collected",
             NEXT_LINK = "Next",
-            GET_STARTED_BUTTON = "Get started";
+            GET_STARTED_BUTTON = "Get started",
+
+    SKIP = "id:Skip";
 
 
     public void waitForLearnMoreLink() {
@@ -55,4 +56,8 @@ public class WelcomePageObject extends MainPageObject {
     }
 
 
+    public void clickSkip() {
+
+        this.waitForElementAndClick(SKIP, "Cannot find and skip click button", 5);
+    }
 }

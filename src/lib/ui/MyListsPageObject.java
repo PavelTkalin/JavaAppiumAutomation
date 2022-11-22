@@ -1,16 +1,15 @@
 package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.By;
+import lib.Platform;
 
-public class MyListsPageObject extends MainPageObject {
+abstract public class MyListsPageObject extends MainPageObject {
 
-    public static final String
+   protected static String
 
-            FOLDER_BY_NAME_TPL = "xpath://*[@text ='{FOLDERNAME}']",
-            ARTICLE_BY_TITLE = "xpath://*[@text ='{TITLE}')]",
-
-    LIST_OF_ARTICLES = "id:org.wikipedia:id/item_title";
+            FOLDER_BY_NAME_TPL,
+            ARTICLE_BY_TITLE,
+    LIST_OF_ARTICLES;
 
     public MyListsPageObject(AppiumDriver driver) {
         super(driver);
@@ -73,6 +72,12 @@ public class MyListsPageObject extends MainPageObject {
 
         String article_xpath = getFolderXpathByName(article_title);
         this.swipeElementToLeft(article_xpath, "Cannot swipe");
+
+        if(Platform.getInstance().isiOS()) {
+
+this.clickElementToTheRightUpCorner(article_xpath, "Cannot find saved article");
+        }
+
         this.waitForArticleTitleToDissappearByTitle(article_title);
 
     }

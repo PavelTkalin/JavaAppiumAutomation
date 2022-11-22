@@ -3,17 +3,17 @@ package lib.ui;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 
-public class SearchPageObject extends MainPageObject {
+abstract public class SearchPageObject extends MainPageObject {
 
-    public final static String
-            SEARCH_INIT_ELEMENT = "id:org.wikipedia:id/fragment_feed_header",
-            SEARCH_INPUT = "id:org.wikipedia:id/search_src_text",
-            SEARCH_RESULT_BY_SUBSTRING_TPL = "xpath://*[@resource-id = 'org.wikipedia:id/page_list_item_container']//*[@text =' {substring}']",
-            SEARCH_CANCEL_BUTTON = "id:org.wikipedia:id/search_close_btn",
-            SEARCH_BUTTON = "id:org.wikipedia:id/search_src_text",
-            SEARCH_RESULT_ELEMENT = "xpath://*[@resource-id = 'org.wikipedia:id/search_results_list']//*[@resource-id = 'org.wikipedia:id/page_list_item_container']",
-            SEARCH_MAIN_ARTICLE = "xpath://android.widget.FrameLayout[@content-desc='Explore']",
-            SEARCH_EMPTY_RESULT_ELEMENT = "xpath://*[contains(@text,'No results found')]";
+    protected static String
+            SEARCH_INIT_ELEMENT,
+            SEARCH_INPUT,
+            SEARCH_RESULT_BY_SUBSTRING_TPL,
+            SEARCH_CANCEL_BUTTON,
+            SEARCH_BUTTON,
+            SEARCH_RESULT_ELEMENT,
+            SEARCH_MAIN_ARTICLE,
+            SEARCH_EMPTY_RESULT_ELEMENT;
 
     public SearchPageObject(AppiumDriver driver) {
         super(driver);

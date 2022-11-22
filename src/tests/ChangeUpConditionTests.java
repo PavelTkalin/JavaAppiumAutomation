@@ -3,8 +3,9 @@ package tests;
 import lib.CoreTestCase;
 import lib.ui.ArticlePageObject;
 import lib.ui.SearchPageObject;
+import lib.ui.factories.ArticlePageObjectFactory;
+import lib.ui.factories.searchPageObjectFactory;
 import org.junit.Test;
-import org.openqa.selenium.By;
 
 public class ChangeUpConditionTests extends CoreTestCase {
 
@@ -13,14 +14,14 @@ public class ChangeUpConditionTests extends CoreTestCase {
     public void testChangeScreenOrientationOnSearchResults() {
 
 
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = searchPageObjectFactory.get(driver);
 
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("JavaScript");
         SearchPageObject.clickByArticle();
 
 
-        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+        ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
 
         String title_before_rotation = ArticlePageObject.getArticleTitle();
 
@@ -45,15 +46,13 @@ public class ChangeUpConditionTests extends CoreTestCase {
     public void testSearchArticleBackground() {
 
 
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = searchPageObjectFactory.get(driver);
 
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("JavaScript");
         SearchPageObject.clickByArticle();
 
         this.backgroundApp(2);
-
-        SearchPageObject.assertElementNotPresent(SearchPageObject.SEARCH_MAIN_ARTICLE, "article is not in the background");
     }
 
 }
